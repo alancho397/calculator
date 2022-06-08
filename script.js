@@ -32,7 +32,7 @@ function updateOperators(event){
         operatorValue === '*' || 
         operatorValue === '/'){
         equal();
-    } else if(!screen.innerHTML.includes('%')){
+    } else if(!(screen.innerHTML.includes('%'))){
         firstValue = screen.innerHTML;
     }
     screen.innerHTML = '';
@@ -48,8 +48,14 @@ function clear(){
 }
 
 function equal(){
-    if(!screen.innerHTML.includes('%')){
-        secondValue = screen.innerHTML;
+    if(!(screen.innerHTML.includes('%'))){
+            secondValue = screen.innerHTML;
+    }
+    if (secondValue === '+' ||
+        secondValue === '-' ||
+        secondValue === '*' ||
+        secondValue === '/'){
+        screen.innerHTML = 'ERROR';
     } else if(operatorValue === '+'){
         screen.innerHTML = (parseFloat(firstValue) + parseFloat(secondValue)).toFixed(3);
     } else if(operatorValue === '-'){
@@ -58,6 +64,8 @@ function equal(){
         screen.innerHTML = (parseFloat(firstValue) * parseFloat(secondValue)).toFixed(3);
     } else if(operatorValue === '/'){
         screen.innerHTML = (parseFloat(firstValue) / parseFloat(secondValue)).toFixed(3);
+    } else {
+        screen.innerHTML = 'ERROR';
     }
     operatorValue = ''
     firstValue = screen.innerHTML;
