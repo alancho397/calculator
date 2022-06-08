@@ -23,7 +23,6 @@ function updateNumbers(event){
     } else{
         screen.innerHTML = screen.innerHTML + event.target.innerHTML;
     }
-    //how do you know if input is first or second value?
 }
 
 
@@ -33,8 +32,9 @@ function updateOperators(event){
         operatorValue === '*' || 
         operatorValue === '/'){
         equal();
+    } else if(!screen.innerHTML.includes('%')){
+        firstValue = screen.innerHTML;
     }
-    firstValue = screen.innerHTML;
     screen.innerHTML = '';
     screen.innerHTML = event.target.innerHTML;
     operatorValue = event.target.innerHTML;
@@ -48,8 +48,9 @@ function clear(){
 }
 
 function equal(){
-    secondValue = screen.innerHTML;
-    if(operatorValue === '+'){
+    if(!screen.innerHTML.includes('%')){
+        secondValue = screen.innerHTML;
+    } else if(operatorValue === '+'){
         screen.innerHTML = (parseFloat(firstValue) + parseFloat(secondValue)).toFixed(3);
     } else if(operatorValue === '-'){
         screen.innerHTML = (parseFloat(firstValue) - parseFloat(secondValue)).toFixed(3);
@@ -58,6 +59,9 @@ function equal(){
     } else if(operatorValue === '/'){
         screen.innerHTML = (parseFloat(firstValue) / parseFloat(secondValue)).toFixed(3);
     }
+    operatorValue = ''
+    firstValue = screen.innerHTML;
+    secondValue = 0;
 }
 
 function inverse(){
@@ -76,8 +80,22 @@ function decimal(){
     }
 }
 
-function precentage(){
-
+function percentage(){
+    if(screen.innerHTML.includes('%')){
+        return;
+    } else{
+        if (operatorValue === '+' || 
+            operatorValue === '-' || 
+            operatorValue === '*' || 
+            operatorValue === '/'){
+            secondValue = parseFloat(screen.innerHTML) / 100;
+        } else{
+            firstValue = parseFloat(screen.innerHTML) / 100;
+        }
+    console.log(firstValue);
+    console.log(secondValue);
+    screen.innerHTML = screen.innerHTML + '%';
+    }
 }
 
 clearButton.addEventListener('click', clear);
