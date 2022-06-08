@@ -16,7 +16,7 @@ function updateNumbers(event){
                 screen.innerHTML[0] === '*' || 
                 screen.innerHTML[0] === '/'){
         screen.innerHTML = '';  
-        screen.innerHTML = screen.innerHTML + event.target.innerHTML;
+        screen.innerHTML = event.target.innerHTML;
     } else{
         screen.innerHTML = screen.innerHTML + event.target.innerHTML;
     }
@@ -25,6 +25,12 @@ function updateNumbers(event){
 
 
 function updateOperators(event){
+    if (operatorValue === '+' || 
+        operatorValue === '-' || 
+        operatorValue === '*' || 
+        operatorValue === '/'){
+        equal();
+    }
     firstValue = screen.innerHTML;
     clear();
     screen.innerHTML = event.target.innerHTML;
