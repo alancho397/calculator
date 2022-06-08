@@ -92,8 +92,6 @@ function percentage(){
         } else{
             firstValue = parseFloat(screen.innerHTML) / 100;
         }
-    console.log(firstValue);
-    console.log(secondValue);
     screen.innerHTML = screen.innerHTML + '%';
     }
 }
