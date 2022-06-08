@@ -27,6 +27,7 @@ body{
     flex-direction: row-reverse;
     align-items: center;
     font-style: Helvetica;
+    overflow: scroll;
 }
 
 .buttons{

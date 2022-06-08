@@ -3,6 +3,7 @@ const clearButton = document.querySelector('.clear');
 const equalButton = document.querySelector('.equal');
 const inverseButton = document.querySelector('.inverse');
 const decimalButton = document.querySelector('.decimal');
+const percentageButton = document.querySelector('.percentage');
 const operatorButtons = document.querySelectorAll('.operator');
 const numberButtons = document.querySelectorAll('.number');
 
@@ -49,13 +50,13 @@ function clear(){
 function equal(){
     secondValue = screen.innerHTML;
     if(operatorValue === '+'){
-        screen.innerHTML = parseFloat(firstValue) + parseFloat(secondValue);
+        screen.innerHTML = (parseFloat(firstValue) + parseFloat(secondValue)).toFixed(3);
     } else if(operatorValue === '-'){
-        screen.innerHTML = parseFloat(firstValue) - parseFloat(secondValue);
+        screen.innerHTML = (parseFloat(firstValue) - parseFloat(secondValue)).toFixed(3);
     } else if(operatorValue === '*'){
-        screen.innerHTML = parseFloat(firstValue) * parseFloat(secondValue);
+        screen.innerHTML = (parseFloat(firstValue) * parseFloat(secondValue)).toFixed(3);
     } else if(operatorValue === '/'){
-        screen.innerHTML = parseFloat(firstValue) / parseFloat(secondValue);
+        screen.innerHTML = (parseFloat(firstValue) / parseFloat(secondValue)).toFixed(3);
     }
 }
 
@@ -75,9 +76,14 @@ function decimal(){
     }
 }
 
+function precentage(){
+
+}
+
 clearButton.addEventListener('click', clear);
 equalButton.addEventListener('click', equal);
 inverseButton.addEventListener('click', inverse);
 decimalButton.addEventListener('click', decimal);
+percentageButton.addEventListener('click', percentage);
 operatorButtons.forEach(button => button.addEventListener('click', updateOperators));
 numberButtons.forEach(button => button.addEventListener('click', updateNumbers));
