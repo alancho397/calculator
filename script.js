@@ -1,6 +1,7 @@
 const screen = document.querySelector('.screen');
 const clearButton = document.querySelector('.clear');
 const equalButton = document.querySelector('.equal');
+const inverseButton = document.querySelector('.inverse');
 const operatorButtons = document.querySelectorAll('.operator');
 const numberButtons = document.querySelectorAll('.number');
 
@@ -54,8 +55,15 @@ function equal(){
     }
 }
 
+function inverse(){
+    if(Math.sign(parseInt(screen.innerHTML)) === 1){
+        screen.innerHTML = '-' + screen.innerHTML
+    }
+}
+
 
 clearButton.addEventListener('click', clear);
 equalButton.addEventListener('click', equal);
+inverseButton.addEventListener('click', inverse);
 operatorButtons.forEach(button => button.addEventListener('click', updateOperators));
 numberButtons.forEach(button => button.addEventListener('click', updateNumbers));
